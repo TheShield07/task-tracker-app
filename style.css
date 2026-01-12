@@ -27,6 +27,7 @@ body{
     box-shadow:0 30px 60px rgba(0,0,0,0.8);
 }
 
+/* Header */
 .header{
     text-align:center;
     margin-bottom:20px;
@@ -35,7 +36,6 @@ body{
 .header h1{
     color:white;
     font-weight:700;
-    letter-spacing:1px;
 }
 
 .header p{
@@ -43,6 +43,20 @@ body{
     font-size:0.8rem;
 }
 
+.app-icon{
+    width:50px;
+    height:50px;
+    border-radius:14px;
+    background:rgba(255,255,255,0.15);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:26px;
+    margin:0 auto 10px;
+    box-shadow:0 0 20px rgba(255,255,255,0.2);
+}
+
+/* Inputs */
 .task-form{
     display:flex;
     flex-direction:column;
@@ -52,10 +66,12 @@ body{
 input, textarea, select{
     background:rgba(255,255,255,0.12);
     border:1px solid rgba(255,255,255,0.15);
-    padding:12px;
+    padding:14px;
     border-radius:14px;
     color:white;
     outline:none;
+    appearance:none;
+    font-family:inherit;
 }
 
 textarea{
@@ -63,11 +79,56 @@ textarea{
     height:60px;
 }
 
+/* Row */
 .row{
     display:flex;
-    gap:10px;
+    gap:12px;
 }
 
+#dateInput,
+#priorityInput{
+    flex:1;
+    min-width:0;
+}
+
+/* Date styling */
+#dateInput{
+    position:relative;
+    color:white;
+}
+
+#dateInput:before{
+    content: attr(data-placeholder);
+    position:absolute;
+    left:14px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#aaa;
+    pointer-events:none;
+}
+
+#dateInput:valid:before{
+    display:none;
+}
+
+#dateInput::-webkit-calendar-picker-indicator{
+    filter:invert(1);
+    opacity:.8;
+    cursor:pointer;
+}
+
+/* Select */
+select{
+    background-color: rgba(255,255,255,0.12);
+    color:white;
+}
+
+select option{
+    background:#1b1d22;
+    color:white;
+}
+
+/* Buttons */
 button{
     background:#4f8cff;
     color:white;
@@ -76,8 +137,14 @@ button{
     border-radius:16px;
     font-weight:600;
     margin-top:5px;
+    transition:.2s ease;
 }
 
+button:active{
+    transform:scale(0.95);
+}
+
+/* Filters */
 .filters{
     display:flex;
     gap:10px;
@@ -89,6 +156,13 @@ button{
     background:rgba(255,255,255,0.1);
 }
 
+.filter.active{
+    background:#4f8cff;
+    color:white;
+    box-shadow:0 0 15px rgba(79,140,255,0.6);
+}
+
+/* Task list */
 ul{
     list-style:none;
     padding:0;
@@ -133,89 +207,11 @@ li{
     padding:6px 10px;
     border-radius:10px;
 }
-.app-icon{
-    width:50px;
-    height:50px;
-    border-radius:14px;
-    background:rgba(255,255,255,0.15);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:26px;
-    margin:0 auto 10px;
-    box-shadow:0 0 20px rgba(255,255,255,0.2);
-}
 
-
-input, textarea, select{
-    appearance:none;
-}
-
-
-select option{
-    background:#1b1d22;
-    color:white;
-}
-
-
-button{
-    transition:.2s ease;
-}
-
-button:active{
-    transform:scale(0.95);
-}
-
-
-.filter.active{
-    background:#4f8cff;
-    color:white;
-    box-shadow:0 0 15px rgba(79,140,255,0.6);
-}
-
-
+/* Empty state */
 #empty{
     text-align:center;
     color:#aaa;
     margin-top:20px;
     font-size:0.85rem;
-}
-
-
-select {
-    color: white;
-    background-color: rgba(255,255,255,0.12);
-}
-
-
-select option {
-    background-color: #1b1d22;
-    color: white;
-}
-
-.date{
-    color: #aaa;
-}
-
-#dateInput{
-    color:#aaa;
-}
-
-#dateInput:valid{
-    color:white;
-}
-
-/* Apple-style placeholder text */
-#dateInput::-webkit-datetime-edit-text,
-#dateInput::-webkit-datetime-edit-month-field,
-#dateInput::-webkit-datetime-edit-day-field,
-#dateInput::-webkit-datetime-edit-year-field {
-    color:#aaa;
-}
-
-#dateInput:valid::-webkit-datetime-edit-text,
-#dateInput:valid::-webkit-datetime-edit-month-field,
-#dateInput:valid::-webkit-datetime-edit-day-field,
-#dateInput:valid::-webkit-datetime-edit-year-field {
-    color:white;
 }
